@@ -1,4 +1,9 @@
+from filesystem import FileSystem
+
+
 def main():
+    filesystem = FileSystem()
+
     while True:
         line = input("mfs > ").strip()
         if not line:
@@ -14,6 +19,15 @@ def main():
             print("Comandos disponíveis:")
             print("  help - Exibe os comandos disponíveis")
             print("  exit - Encerra o terminal")
+            print("  mkdir NOME - Cria um diretório no diretório atual")
+        elif command == "mkdir":
+            if len(arguments) != 1:
+                print("Uso: mkdir NOME")
+                continue
+            try:
+                filesystem.mkdir(arguments[0])
+            except ValueError as error:
+                print(error)
         else:
             print("Comando desconhecido")
 
